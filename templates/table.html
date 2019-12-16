@@ -1,0 +1,6 @@
+{{range $y, $x := . }}
+<div class="col {{ $x.Urg }}">
+    <h3 class="title"> {{ $x.Summary }} </h3>
+      <p class="description">{{ $x.Time }}</p>
+</div>
+{{end}}
