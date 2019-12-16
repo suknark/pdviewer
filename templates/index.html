@@ -6,7 +6,7 @@
     </head>
     <body>
     <div class="container">
-        <h1 class="header">Time without high incidents - {{ .Uptime }}</h1>
+        <h1 class="header">Time without high incidents - {{ .Uptime | FormatDuration }}</h1>
         <h2 class="header"> OnCall now - {{ .OnCall }}</h2>
         <div class="row">
             {{ range .Incidents }}

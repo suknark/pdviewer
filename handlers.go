@@ -14,13 +14,24 @@ type Handlers struct {
 	pd          *PdApi
 }
 
+func fmtDuration(d time.Duration) string {
+    d = d.Round(time.Minute)
+    h := d / time.Hour
+    d -= h * time.Hour
+    m := d / time.Minute
+    return fmt.Sprintf("%02dh%02dm", h, m)
+}
+
 func NewHandlers(pd *PdApi) *Handlers {
 	templateData, err := ioutil.ReadFile("templates/index.html")
 	if err != nil {
 		panic(fmt.Errorf("cannot read tempalte: %s", err))
 	}
+	funcs := template.FuncMap{
+		"FormatDuration": fmtDuration,
+	}
 	h := &Handlers{
-		template:    template.Must(template.New("index").Parse(string(templateData))),
+		template:    template.Must(template.New("index").Funcs(funcs).Parse(string(templateData))),
 		uptimeSince: time.Now(),
 		pd:          pd,
 	}
