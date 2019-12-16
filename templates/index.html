@@ -1,13 +1,21 @@
-{{define "layout"}}
 <!doctype html>
 <html>
-        <head>
-            <meta http-equiv="refresh" content="10">
+    <head>
+        <meta http-equiv="refresh" content="10">
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
     </head>
-<link rel="stylesheet" type="text/css" href="/static/style.css">
-<div class="container">
-    {{template "incidents" .}}
+    <body>
+    <div class="container">
+        <h1 class="header">Time without high incidents - {{ .Uptime }}</h1>
+        <h2 class="header"> OnCall now - {{ .OnCall }}</h2>
+        <div class="row">
+            {{ range .Incidents }}
+            <div class="col {{ .Urg }}">
+                <h3 class="title"> {{ .Summary }} </h3>
+                <p class="description">{{ .Time }}</p>
+            </div>
+            {{end}}
+        </div>
     </div>
-</div>
+</body>
 </html>
-{{end}}
