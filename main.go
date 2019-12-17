@@ -15,7 +15,7 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.Handle("/", handlers)
 	if os.Getenv("PDVIEWERLISTEN") == "" {
-		log.Println("PDVIEWERLISTEN not set. Using  0.0.0.0:9090")
+		log.Println("PDVIEWERLISTEN not set. Listening on  0.0.0.0:9090")
 		http.ListenAndServe(":9090", nil)
 	} else {
 		log.Println("Listening on "+os.Getenv("PDVIEWERLISTEN"))
