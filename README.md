@@ -1,4 +1,4 @@
-# Simple webinterface for view alerts from PagerDuty
+# Simple webinterface for viewing alerts from PagerDuty
 
 **Usage:**
 
