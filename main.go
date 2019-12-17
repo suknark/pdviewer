@@ -8,7 +8,7 @@ import (
 
 func main() {
 	token := os.Getenv("PDTOKEN")
-	schedules := os.Getenv("PDSHEDULES")
+	schedules := os.Getenv("PDSCHEDULE")
 	pd := NewPdApi(token, schedules)
 	fs := http.FileServer(http.Dir("./public/static"))
 	handlers := NewHandlers(pd)
