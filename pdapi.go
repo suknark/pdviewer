@@ -45,7 +45,7 @@ func (pd *PdApi) GetIncidents() ([]Incident, bool) {
 		return nil, t
 	}
 	for _, p := range eps.Incidents {
-		if p.Status != "resolved" {
+		if p.Status != "resolved" && p.EscalationPolicy.Summary == pd.schedules {
 			if p.Urgency == "high" {
 				t = false
 			}
